@@ -55,7 +55,14 @@ export class EnvironmentSettingsComponent implements OnInit, OnDestroy {
       port: [EnvironmentDefault.port],
       endpointPrefix: [EnvironmentDefault.endpointPrefix],
       latency: [EnvironmentDefault.latency],
-      https: [EnvironmentDefault.https],
+      tlsOptions: this.formBuilder.group({
+        enabled: [EnvironmentDefault.tlsOptions.enabled],
+        pfxPath: [EnvironmentDefault.tlsOptions.pfxPath],
+        certPath: [EnvironmentDefault.tlsOptions.certPath],
+        keyPath: [EnvironmentDefault.tlsOptions.keyPath],
+        caPath: [EnvironmentDefault.tlsOptions.caPath],
+        passphrase: [EnvironmentDefault.tlsOptions.passphrase]
+      }),
       localhostOnly: [false],
       cors: [EnvironmentDefault.cors]
     });
@@ -103,7 +110,7 @@ export class EnvironmentSettingsComponent implements OnInit, OnDestroy {
               port: activeEnvironment.port,
               endpointPrefix: activeEnvironment.endpointPrefix,
               latency: activeEnvironment.latency,
-              https: activeEnvironment.https,
+              tlsOptions: activeEnvironment.tlsOptions,
               localhostOnly: activeEnvironment.hostname === '127.0.0.1',
               cors: activeEnvironment.cors
             },
